@@ -58,12 +58,43 @@ public:
   double vertexMaxPrincipalCurvature(Vertex v) const;
   Vector3 vertexDualMeanCurvatureNormal(Vertex v) const;
 
+  // DDG: https://github.com/nzfeng/geometry-central/tree/DDG
+  int eulerCharacteristic() const;
+  double meanEdgeLength() const;
+  double totalArea() const;
+  double cotan(Halfedge he) const;
+  double barycentricDualArea(Vertex v) const;
+  double angle(Corner c) const;
+  double dihedralAngle(Halfedge he) const;
+  Vector3 vertexNormalEquallyWeighted(Vertex v) const;
+  Vector3 vertexNormalAngleWeighted(Vertex v) const;
+  Vector3 vertexNormalSphereInscribed(Vertex v) const;
+  Vector3 vertexNormalAreaWeighted(Vertex v) const;
+  Vector3 vertexNormalGaussianCurvature(Vertex v) const;
+  Vector3 vertexNormalMeanCurvature(Vertex v) const;
+  double angleDefect(Vertex v) const;
+  double totalAngleDefect() const;
+  double scalarMeanCurvature(Vertex v) const;
+  double circumcentricDualArea(Vertex v) const;
+  std::pair<double, double> principalCurvatures(Vertex v) const;
+
+  SparseMatrix<double> laplaceMatrix() const;
+  SparseMatrix<double> massMatrix() const;
+  SparseMatrix<std::complex<double>> complexLaplaceMatrix() const;
+  Vector3 centerOfMass() const;
+  void normalize(const Vector3& origin = Vector3::zero(), bool rescale = false);
+
+  SparseMatrix<double> buildExteriorDerivative1Form() const;
+  SparseMatrix<double> buildHodgeStar0Form() const;
+  SparseMatrix<double> buildHodgeStar1Form() const;
+  SparseMatrix<double> buildHodgeStar2Form() const;
+  SparseMatrix<double> buildExteriorDerivative0Form() const;
+
 protected:
   // Override the compute vertex positions method for embedded geometry
   virtual void computeVertexPositions() override;
 
   double vertexPrincipalCurvature(int whichCurvature, Vertex v) const;
-
 private:
 };
 
